@@ -40,7 +40,7 @@ export function PartnershipSection() {
           )}
         >
           <span className="text-foreground">In Partnership </span>
-          <span className="text-primary">with</span>
+          <span className="text-white font-light">with</span>
         </h2>
 
         <div className="flex items-center justify-center gap-12 md:gap-16 flex-wrap">
