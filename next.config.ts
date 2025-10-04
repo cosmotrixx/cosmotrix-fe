@@ -14,6 +14,13 @@ const nextConfig: NextConfig = {
     return config;
   },
   transpilePackages: ['phaser'],
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        'phaser': 'phaser/dist/phaser.esm.js',
+      },
+    },
+  },
 };
 
 export default nextConfig;

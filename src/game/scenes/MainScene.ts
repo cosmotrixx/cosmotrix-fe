@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import { Phaser } from '../phaser';
 import { Player } from '../gameobjects/Player';
 
 export class MainScene extends Phaser.Scene {

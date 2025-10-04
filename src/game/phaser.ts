@@ -1,7 +1,5 @@
-export const getPhaser = async () => {
-  if (typeof window !== 'undefined') {
-    const PhaserModule = await import('phaser');
-    return PhaserModule.default || PhaserModule;
-  }
-  return null;
-};
+// Phaser import wrapper for Next.js
+import * as Phaser from 'phaser';
+
+export default Phaser;
+export { Phaser };
