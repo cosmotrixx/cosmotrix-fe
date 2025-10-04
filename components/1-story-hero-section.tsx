@@ -111,7 +111,7 @@ export function StoryHeroSection() {
       />
       
       {/* Your existing content with higher z-index */}
-      <div className="container mx-auto max-w-5xl relative z-10">
+      <div className="container mx-auto max-w-5xl relative z-10 -mt-32">
         <div
           className={cn(
             "text-center transition-all duration-1000",
@@ -144,11 +144,11 @@ export function StoryHeroSection() {
         {/* Character silhouette */}
         <div
           className={cn(
-            "mt-16 flex justify-center transition-all duration-1000 delay-500",
+            "mt-8 flex justify-start ml-8 md:ml-16 lg:ml-24 transition-all duration-1000 delay-500",
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75",
           )}
         >
-          <div className="relative w-48 h-48 md:w-64 md:h-64">
+          <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
             <Image
               src="/images/silhouette-1.png"
               alt="Character silhouette"
