@@ -2,11 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 import { cn } from "../lib/utils"
-import { NoaaLogo } from "./noaa-logo"
-import { NasaLogo } from "./nasa-logo"
-import { EsaLogo } from "./esa-logo"
 
-export function PartnershipSection() {
+export function BuiltWithSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -40,22 +37,29 @@ export function PartnershipSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          <span className="text-foreground">In Partnership </span>
+          <span className="text-foreground">Built </span>
           <span className="text-white font-light">with</span>
         </h2>
 
-        <div className="w-full flex items-center justify-center gap-12 md:gap-16 py-8 md:py-10 backdrop-blur-sm" style={{ background: 'radial-gradient(circle, #150737 0%, #E174D3 100%)' }}>
+        <div 
+          className="w-full flex items-center justify-center gap-12 md:gap-16 py-8 md:py-10 backdrop-blur-sm" 
+          style={{ 
+            background: 'radial-gradient(ellipse 100% 300% at 50% 50%, #21001D 0%, rgba(67, 224, 247, 1) 100%)'
+          }}
+        >
           {[
-            { name: "NOAA", delay: 0, Logo: NoaaLogo },
-            { name: "NASA", delay: 200, Logo: NasaLogo },
-            { name: "ESA", delay: 400, Logo: EsaLogo },
-          ].map((partner, index) => (
+            { name: "Technology 1", delay: 0, icon: "🚀" },
+            { name: "Technology 2", delay: 200, icon: "⚡" },
+            { name: "Technology 3", delay: 400, icon: "🎯" },
+          ].map((tech, index) => (
             <div
               key={index}
               className={cn("transition-all duration-1000", isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75")}
-              style={{ transitionDelay: `${partner.delay}ms` }}
+              style={{ transitionDelay: `${tech.delay}ms` }}
             >
-              <partner.Logo className="w-24 h-24 md:w-32 md:h-32 object-contain" />
+              <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center text-6xl">
+                {tech.icon}
+              </div>
             </div>
           ))}
         </div>

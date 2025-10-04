@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { useEffect, useMemo, useRef, useState } from "react"
-import Image from "next/image"
 import { ChevronLeft, ChevronRight, Send, Sparkles, StopCircle } from "lucide-react"
 import { cn } from "../lib/utils"
 import { Button } from "./ui/button"
@@ -45,6 +44,13 @@ const API_BASE =
   (typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:3000"
     : "")
+
+// Debug: Log API_BASE on load
+if (typeof window !== "undefined") {
+  console.log('🌐 API_BASE:', API_BASE)
+  console.log('🌐 NEXT_PUBLIC_BACKEND_URL:', process.env.NEXT_PUBLIC_BACKEND_URL)
+  console.log('🌐 window.location:', window.location.hostname)
+}
 
 const CHARACTERS: Character[] = [
   {
@@ -157,21 +163,31 @@ export function ChatSection() {
     setIsSending(true)
 
     try {
-      const res = await fetch(`${API_BASE}${character.endpoint}`, {
+      const url = `${API_BASE}${character.endpoint}`
+      console.log('🔍 Fetching:', url)
+      console.log('📤 Sending messages:', [...messages, userMessage])
+      
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: [...messages, userMessage] }),
       })
 
+      console.log('📥 Response status:', res.status)
+      console.log('📥 Response headers:', Object.fromEntries(res.headers.entries()))
+
       if (!res.ok) {
         const txt = await res.text()
+        console.error('❌ Error response:', txt)
         throw new Error(txt || `Request failed (${res.status})`)
       }
       const data: ChatResponse = await res.json()
+      console.log('✅ Success:', data)
 
       // Simulated streaming typing animation
       await streamAppend(data.response)
     } catch (err: unknown) {
+      console.error('❌ Fetch error:', err)
       const msg = err instanceof Error ? err.message : "unknown error"
       await streamAppend(`Sorry, something went wrong: ${msg}`)
     } finally {
@@ -212,64 +228,6 @@ export function ChatSection() {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center py-24 px-6">
-      <div className="container mx-auto max-w-6xl">
-        <div
-          className={cn(
-            "text-center mb-16 transition-all duration-1000",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-          )}
-        >
-          <p className="text-xl md:text-2xl text-foreground/80 mb-2">Not numbers. Not static charts.</p>
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-4">But living stories of the Sun</h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            {
-              title: "THE SUN (EUV)",
-              subtitle: "SDI-A 131A 171A 193A 284A 304A Thematic",
-              image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Okp8xCp5XYuH6HexGvQZs7BP9u0xxU.png",
-              delay: 0,
-            },
-            {
-              title: "THE AURORA",
-              subtitle: "Northern Hemisphere Southern Hemisphere",
-              image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Okp8xCp5XYuH6HexGvQZs7BP9u0xxU.png",
-              delay: 200,
-            },
-            {
-              title: "CORONAL MASS EJECTIONS",
-              subtitle: "GOES-19 CCOR-1 LASCO C2 LASCO C3",
-              image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Okp8xCp5XYuH6HexGvQZs7BP9u0xxU.png",
-              delay: 400,
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className={cn(
-                "bg-card border border-border rounded-lg p-6 transition-all duration-1000",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-              )}
-              style={{ transitionDelay: `${item.delay}ms` }}
-            >
-              <div className="mb-4">
-                <h3 className="text-sm font-bold text-foreground mb-1">{item.title}</h3>
-                <p className="text-xs text-muted-foreground">{item.subtitle}</p>
-              </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden mb-4 relative">
-                <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
-                  <svg className="w-4 h-4 text-secondary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <div className="flex-1 h-1 bg-secondary rounded-full" />
-              </div>
-            </div>
-          ))}
-        </div>
 
         {/* Chat Interface Section */}
         <div
@@ -285,7 +243,7 @@ export function ChatSection() {
             </p>
           </div>
 
-          <Card className="bg-muted/30 border-border/50 backdrop-blur-sm">
+          <Card className="bg-muted/30 border-border/50 backdrop-blur-sm max-w-6xl mx-auto w-full">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start">
                 {/* Character Selector */}
@@ -319,10 +277,10 @@ export function ChatSection() {
                 </div>
 
                 {/* Chat Interface */}
-                <div className="flex flex-col gap-4 min-h-[400px]">
+                <div className="flex flex-col gap-4 h-[400px]">
                   <div
                     ref={scrollRef}
-                    className="flex-1 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4 min-h-[300px] max-h-[400px]"
+                    className="flex-1 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4"
                   >
                     {messages.length === 0 ? (
                       <div className="flex items-center justify-center h-full">
@@ -383,7 +341,6 @@ export function ChatSection() {
             </CardContent>
           </Card>
         </div>
-      </div>
     </section>
   )
 }

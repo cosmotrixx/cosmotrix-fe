@@ -81,17 +81,21 @@ export function StoryHeroSection() {
       {/* Background with fade effect */}
       <div 
         className="absolute inset-0 transition-opacity duration-300"
-        style={{
-          backgroundImage: "url('/images/bg-1.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: backgroundOpacity
-        }}
-      />
+        style={{ opacity: backgroundOpacity }}
+      >
+        <Image
+          src="/images/bg-1.png"
+          alt="Background"
+          fill
+          priority
+          quality={90}
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
       
       {/* Interactive constellation */}
-      <StarField 
+      {/* <StarField 
         opacity={backgroundOpacity * 0.8}
         numParticles={100}
         enableHover={true}
@@ -102,8 +106,7 @@ export function StoryHeroSection() {
         connectionOpacity={0.2}
         colors={["#ffffff", "#ffd700", "#87ceeb"]}
         className="z-2"
-      />
-
+      /> */}
       
       {/* Optional overlay that also fades */}
       <div 
@@ -112,63 +115,44 @@ export function StoryHeroSection() {
       />
       
       {/* Your existing content with higher z-index */}
-      <div className="container mx-auto max-w-5xl relative z-10">
+      <div className="container mx-auto max-w-5xl relative z-10 -mt-32">
         <div
           className={cn(
             "text-center transition-all duration-1000",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          {/* Replace subtitle text with PNG */}
+          {/* Subtitle text */}
           <div className="mb-2 flex justify-center">
-            <div className="relative w-80 h-24 md:w-96 md:h-16 lg:w-[28rem] lg:h-20">
-              <Image
-                src="/images/sections/clock2.png"
-                alt="a Clock, a Secret, and"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <h2 className="text-[50px] font-light text-white leading-tight">
+              a Clock, a Secret, and
+            </h2>
           </div>
 
-          {/* Replace main title text with PNG */}
+          {/* Main title with gradient text */}
           <div className="mb-2 flex justify-center">
-            <div className="relative w-full max-w-4xl h-20 md:h-32 lg:h-40">
-              <Image
-                src="/images/sections/invisible.png"
-                alt="an Invisible War in the Sky"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <h1 className="text-[80px] font-bold leading-tight">
+              <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+                an Invisible War
+              </span>
+              <span className="text-white"> in the Sky</span>
+            </h1>
           </div>
 
-          {/* Replace main title text with PNG */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative w-full max-w-xl h-12 md:h-20 lg:h-24">
-              <Image
-                src="/images/sections/luna.png"
-                alt="Luna's world"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-
-          {/* <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            Step into Luna's world. With the power of AI, IoT, and magical data, kids become heroes in a story where
+          <p className="text-[20px] font-normal text-white max-w-3xl mx-auto leading-relaxed">
+            Step into Luna&apos;s world. With the power of AI, IoT, and magical data, kids become heroes in a story where
             science meets adventure.
-          </p> */}
+          </p>
         </div>
 
         {/* Character silhouette */}
         <div
           className={cn(
-            "mt-16 flex justify-center transition-all duration-1000 delay-500",
+            "mt-8 flex justify-start ml-8 md:ml-16 lg:ml-24 transition-all duration-1000 delay-500",
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75",
           )}
         >
-          <div className="relative w-48 h-48 md:w-64 md:h-64">
+          <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
             <Image
               src="/images/silhouette-1.png"
               alt="Character silhouette"
