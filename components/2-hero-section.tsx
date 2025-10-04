@@ -6,6 +6,12 @@ import { StarField } from "./backgrounds/star-field"
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [opacity, setOpacity] = useState(1)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Set mounted state to prevent hydration mismatch
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,16 +61,23 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden transition-opacity duration-150"
       style={{ opacity }}
     >
-      {/* Dense starfield with connections */}
-      <StarField 
-        opacity={opacity} 
-        numParticles={300}
-        particleSize={3}
-        speed={0.5}
-        enableConnections={true}
-        connectionDistance={150}
-        className="z-2"
-      />
+      {/* Animated stars background - only render on client to avoid hydration mismatch */}
+      {isMounted && (
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-foreground/50 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="relative z-10 text-center px-6">
         <h1 className="text-6xl md:text-8xl font-bold text-primary animate-pulse-glow">Earth needs you.</h1>

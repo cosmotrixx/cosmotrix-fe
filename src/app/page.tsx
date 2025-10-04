@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Navigation } from "../../components/navigation"
 import { HeroSection } from "../../components/2-hero-section"
-import { LivingStoriesSection } from "../../components/living-stories-section"
+import { ChatSection } from "../../components/chat-section"
 import { PartnershipSection } from "../../components/partnership-section"
 import { StoryHeroSection } from "../../components/1-story-hero-section"
 import { VoidlingsSection } from "../../components/voidlings-section"
@@ -28,9 +28,8 @@ export default function Home() {
       <StoryHeroSection />
       <Navigation />
       <HeroSection />
-      <LivingStoriesSection />
+      <ChatSection />
       <PartnershipSection />
-      <StoryHeroSection />
       <VoidlingsSection />
       <ChaptersSection />
     </main>
