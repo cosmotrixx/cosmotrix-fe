@@ -37,7 +37,12 @@ export function EarthNeedsYouSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          <span className="text-[30px] font-medium text-primary animate-pulse-glow">Earth needs you.</span>
+          <span 
+            className="text-[30px] font-medium animate-pulse-glow"
+            style={{ color: '#FFC200' }}
+          >
+            Earth needs you.
+          </span>
         </h2>
       </div>
     </section>

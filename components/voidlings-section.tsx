@@ -35,7 +35,17 @@ export function VoidlingsSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10",
             )}
           >
-            <p className="text-lg md:text-xl text-accent italic mb-8">The Voidlings have stolen the Sun's storms.</p>
+            <p 
+              className="text-lg md:text-xl italic mb-8"
+              style={{
+                background: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 40%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              The Voidlings have stolen the Sun&apos;s storms.
+            </p>
             <div className="relative inline-block">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-pulse-glow relative overflow-hidden">
                 {/* Swirl patterns */}
@@ -73,7 +83,17 @@ export function VoidlingsSection() {
                 <div className="absolute -left-6 bottom-1/3 w-16 h-2 bg-accent" />
               </div>
             </div>
-            <p className="text-lg md:text-xl text-accent italic">They will unleash them all at once.</p>
+            <p 
+              className="text-lg md:text-xl italic"
+              style={{
+                background: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 40%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              They will unleash them all at once.
+            </p>
           </div>
         </div>
       </div>
