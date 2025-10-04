@@ -112,7 +112,7 @@ export function StoryHeroSection() {
         >
           <p className="text-xl md:text-2xl text-foreground/80 mb-4">a Clock, a Secret, and</p>
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-balance">
-            <span className="text-accent">an Invisible War </span>
+            <span className="bg-gradient-to-r from-[#E33E07] to-[#FFCF00] bg-clip-text text-transparent">an Invisible War </span>
             <span className="text-foreground">in the Sky</span>
           </h2>
           <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
