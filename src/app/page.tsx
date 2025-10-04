@@ -5,9 +5,11 @@ import { Navigation } from "../../components/navigation"
 import { HeroSection } from "../../components/2-hero-section"
 import { ChatSection } from "../../components/chat-section"
 import { PartnershipSection } from "../../components/partnership-section"
+import { BuiltWithSection } from "../../components/built-with-section"
 import { StoryHeroSection } from "../../components/1-story-hero-section"
 import { VoidlingsSection } from "../../components/voidlings-section"
 import { ChaptersSection } from "../../components/chapters-section"
+import { EarthCallToActionSection } from "@/components/earth-cta-section"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -28,8 +30,10 @@ export default function Home() {
       <StoryHeroSection />
       <Navigation />
       <HeroSection />
+      <EarthCallToActionSection />
       <ChatSection />
       <PartnershipSection />
+      <BuiltWithSection />
       <VoidlingsSection />
       <ChaptersSection />
     </main>
