@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { useEffect, useMemo, useRef, useState } from "react"
-import Image from "next/image"
 import { ChevronLeft, ChevronRight, Send, Sparkles, StopCircle } from "lucide-react"
 import { cn } from "../lib/utils"
 import { Button } from "./ui/button"
@@ -45,6 +44,13 @@ const API_BASE =
   (typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:3000"
     : "")
+
+// Debug: Log API_BASE on load
+if (typeof window !== "undefined") {
+  console.log('🌐 API_BASE:', API_BASE)
+  console.log('🌐 NEXT_PUBLIC_BACKEND_URL:', process.env.NEXT_PUBLIC_BACKEND_URL)
+  console.log('🌐 window.location:', window.location.hostname)
+}
 
 const CHARACTERS: Character[] = [
   {
@@ -157,21 +163,31 @@ export function ChatSection() {
     setIsSending(true)
 
     try {
-      const res = await fetch(`${API_BASE}${character.endpoint}`, {
+      const url = `${API_BASE}${character.endpoint}`
+      console.log('🔍 Fetching:', url)
+      console.log('📤 Sending messages:', [...messages, userMessage])
+      
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: [...messages, userMessage] }),
       })
 
+      console.log('📥 Response status:', res.status)
+      console.log('📥 Response headers:', Object.fromEntries(res.headers.entries()))
+
       if (!res.ok) {
         const txt = await res.text()
+        console.error('❌ Error response:', txt)
         throw new Error(txt || `Request failed (${res.status})`)
       }
       const data: ChatResponse = await res.json()
+      console.log('✅ Success:', data)
 
       // Simulated streaming typing animation
       await streamAppend(data.response)
     } catch (err: unknown) {
+      console.error('❌ Fetch error:', err)
       const msg = err instanceof Error ? err.message : "unknown error"
       await streamAppend(`Sorry, something went wrong: ${msg}`)
     } finally {
@@ -227,7 +243,7 @@ export function ChatSection() {
             </p>
           </div>
 
-          <Card className="bg-muted/30 border-border/50 backdrop-blur-sm">
+          <Card className="bg-muted/30 border-border/50 backdrop-blur-sm max-w-6xl mx-auto w-full">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start">
                 {/* Character Selector */}
@@ -261,10 +277,10 @@ export function ChatSection() {
                 </div>
 
                 {/* Chat Interface */}
-                <div className="flex flex-col gap-4 min-h-[400px]">
+                <div className="flex flex-col gap-4 h-[400px]">
                   <div
                     ref={scrollRef}
-                    className="flex-1 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4 min-h-[300px] max-h-[400px]"
+                    className="flex-1 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4"
                   >
                     {messages.length === 0 ? (
                       <div className="flex items-center justify-center h-full">
