@@ -243,19 +243,19 @@ export function ChatSection() {
             </p>
           </div>
 
-          <Card className="bg-muted/30 border-border/50 backdrop-blur-sm max-w-6xl mx-auto w-full">
-            <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start">
+          <Card className="bg-muted/30 border-border/50 backdrop-blur-sm mx-auto min-w-[1000px] max-w-[1000px] h-[600px]">
+            <CardContent className="p-6 md:p-8 h-full">
+              <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start h-full min-h-0">
                 {/* Character Selector */}
-                <div className="flex flex-col items-center gap-4">
-                  <div className="relative w-full">
+                <div className="flex flex-col items-center gap-4 h-full min-h-0">
+                  <div className="relative w-full flex-1 min-h-0">
                     <div
                       className={cn(
                         "pointer-events-none absolute -inset-1 rounded-xl bg-gradient-to-br opacity-50 blur",
                         character.colorClass,
                       )}
                     />
-                    <div className="relative bg-background/80 backdrop-blur-sm rounded-lg p-4 border border-border/50">
+                    <div className="relative h-full flex flex-col bg-background/80 backdrop-blur-sm rounded-lg p-4 border border-border/50">
                       <div className="flex items-center justify-between mb-4">
                         <Button variant="ghost" size="icon" onClick={handlePrev} aria-label="Previous">
                           <ChevronLeft className="size-5" />
@@ -268,7 +268,7 @@ export function ChatSection() {
                           <ChevronRight className="size-5" />
                         </Button>
                       </div>
-                      <div className="w-full aspect-square rounded-lg border bg-gradient-to-br from-background/40 to-background/10 shadow-inner flex items-center justify-center">
+                      <div className="w-full aspect-square flex-1 rounded-lg border bg-gradient-to-br from-background/40 to-background/10 shadow-inner flex items-center justify-center">
                         <Sparkles className="size-12 text-primary" />
                       </div>
                     </div>
@@ -277,10 +277,10 @@ export function ChatSection() {
                 </div>
 
                 {/* Chat Interface */}
-                <div className="flex flex-col gap-4 h-[400px]">
+                <div className="flex flex-col gap-4 h-full min-h-0">
                   <div
                     ref={scrollRef}
-                    className="flex-1 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4"
+                    className="flex-1 min-h-0 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4"
                   >
                     {messages.length === 0 ? (
                       <div className="flex items-center justify-center h-full">
