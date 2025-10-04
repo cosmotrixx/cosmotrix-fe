@@ -103,7 +103,6 @@ export function StoryHeroSection() {
         colors={["#ffffff", "#ffd700", "#87ceeb"]}
         className="z-2"
       />
-
       
       {/* Optional overlay that also fades */}
       <div 
@@ -119,46 +118,27 @@ export function StoryHeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          {/* Replace subtitle text with PNG */}
+          {/* Subtitle text */}
           <div className="mb-2 flex justify-center">
-            <div className="relative w-80 h-24 md:w-96 md:h-16 lg:w-[28rem] lg:h-20">
-              <Image
-                src="/images/sections/clock2.png"
-                alt="a Clock, a Secret, and"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <h2 className="text-[50px] font-light text-white leading-tight">
+              a Clock, a Secret, and
+            </h2>
           </div>
 
-          {/* Replace main title text with PNG */}
+          {/* Main title with gradient text */}
           <div className="mb-2 flex justify-center">
-            <div className="relative w-full max-w-4xl h-20 md:h-32 lg:h-40">
-              <Image
-                src="/images/sections/invisible.png"
-                alt="an Invisible War in the Sky"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <h1 className="text-[80px] font-bold leading-tight">
+              <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+                an Invisible War
+              </span>
+              <span className="text-white"> in the Sky</span>
+            </h1>
           </div>
 
-          {/* Replace main title text with PNG */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative w-full max-w-xl h-12 md:h-20 lg:h-24">
-              <Image
-                src="/images/sections/luna.png"
-                alt="Luna's world"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-
-          {/* <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            Step into Luna's world. With the power of AI, IoT, and magical data, kids become heroes in a story where
+          <p className="text-[20px] font-normal text-white max-w-3xl mx-auto leading-relaxed">
+            Step into Luna&apos;s world. With the power of AI, IoT, and magical data, kids become heroes in a story where
             science meets adventure.
-          </p> */}
+          </p>
         </div>
 
         {/* Character silhouette */}
