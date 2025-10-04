@@ -5,8 +5,8 @@ export function EsaLogo({ className }: { className?: string }) {
 <rect x="13" y="13" width="191" height="74" fill="url(#pattern0_99_2288)" shapeRendering="crispEdges"/>
 </g>
 <defs>
-<filter id="filter0_d_99_2288" x="0.1" y="0.1" width="216.8" height="99.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<filter id="filter0_d_99_2288" x="0.1" y="0.1" width="216.8" height="99.8" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+<feFlood floodOpacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
 <feGaussianBlur stdDeviation="6.45"/>
