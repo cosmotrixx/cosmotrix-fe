@@ -30,7 +30,6 @@ export default function Home() {
       <HeroSection />
       <ChatSection />
       <PartnershipSection />
-      <StoryHeroSection />
       <VoidlingsSection />
       <ChaptersSection />
     </main>
