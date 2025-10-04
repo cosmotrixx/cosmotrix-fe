@@ -8,8 +8,10 @@ import { PartnershipSection } from "../../components/partnership-section"
 import { BuiltWithSection } from "../../components/built-with-section"
 import { StoryHeroSection } from "../../components/1-story-hero-section"
 import { VoidlingsSection } from "../../components/voidlings-section"
+import { EarthNeedsYouSection } from "../../components/earth-needs-you-section"
 import { ChaptersSection } from "../../components/chapters-section"
 import { EarthCallToActionSection } from "@/components/earth-cta-section"
+import { LivingStoriesSection } from "@/components/living-stories-section"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -30,11 +32,13 @@ export default function Home() {
       <StoryHeroSection />
       <Navigation />
       <HeroSection />
-      <EarthCallToActionSection />
-      <ChatSection />
       <PartnershipSection />
-      <BuiltWithSection />
       <VoidlingsSection />
+      <EarthNeedsYouSection />
+      <EarthCallToActionSection />
+      <LivingStoriesSection />
+      <ChatSection />
+      <BuiltWithSection />
       <ChaptersSection />
     </main>
   )
