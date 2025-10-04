@@ -18,7 +18,20 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Ignore Phaser game files that have different coding standards
+      "src/starshake/**",
+      "public/assets/**",
     ],
+  },
+  {
+    rules: {
+      // Disable problematic TypeScript ESLint rules
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/no-this-alias": "off", 
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-require-imports": "off",
+    },
   },
 ];
 

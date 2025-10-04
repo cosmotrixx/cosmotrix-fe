@@ -1,22 +1,31 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { Game, gameConfig } from '@/game';
+import dynamic from 'next/dynamic';
 
-export default function GameComponent() {
+// Dynamically import the Game component to avoid SSR issues
+const GameComponent = dynamic(() => Promise.resolve(GameComponentInner), {
+  ssr: false,
+  loading: () => <div className="w-full h-full flex items-center justify-center">Loading game...</div>
+});
+
+function GameComponentInner() {
   const gameRef = useRef<Phaser.Game | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (containerRef.current && !gameRef.current) {
-      // Create the Phaser game instance with updated config
-      gameRef.current = new Game({
-        ...gameConfig,
-        width: 800,
-        height: 600,
-        parent: containerRef.current
-      });
-    }
+    // Dynamic import to avoid SSR issues
+    import('@/game').then(({ Game, gameConfig }) => {
+      if (containerRef.current && !gameRef.current) {
+        // Create the Phaser game instance with updated config
+        gameRef.current = new Game({
+          ...gameConfig,
+          width: 800,
+          height: 600,
+          parent: containerRef.current
+        });
+      }
+    });
 
     // Cleanup function
     return () => {
@@ -56,4 +65,8 @@ export default function GameComponent() {
       </div>
     </div>
   );
+}
+
+export default function GamePage() {
+  return <GameComponent />;
 }
