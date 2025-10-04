@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { StarField } from "./backgrounds/star-field"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -77,7 +78,6 @@ export function HeroSection() {
           ))}
         </div>
       )}
-
 
       <div className="relative z-10 text-center px-6">
         <h1 className="text-6xl md:text-8xl font-bold text-primary animate-pulse-glow">Earth needs you.</h1>
