@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "../lib/utils"
-import { StarField } from "./children/star-field"
+import { StarField } from "./backgrounds/star-field"
 
 export function StoryHeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -90,11 +90,20 @@ export function StoryHeroSection() {
         }}
       />
       
-      {/* Particles.js Star Field */}
+      {/* Interactive constellation */}
       <StarField 
-        opacity={backgroundOpacity * 0.8} 
-        className="z-5"
+        opacity={backgroundOpacity * 0.8}
+        numParticles={100}
+        enableHover={true}
+        enableClick={true}
+        hoverMode="grab"
+        clickMode="repulse"
+        connectionDistance={100}
+        connectionOpacity={0.2}
+        colors={["#ffffff", "#ffd700", "#87ceeb"]}
+        className="z-2"
       />
+
       
       {/* Optional overlay that also fades */}
       <div 
@@ -110,15 +119,46 @@ export function StoryHeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          <p className="text-xl md:text-2xl text-foreground/80 mb-4">a Clock, a Secret, and</p>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-balance">
-            <span className="text-accent">an Invisible War </span>
-            <span className="text-foreground">in the Sky</span>
-          </h2>
-          <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+          {/* Replace subtitle text with PNG */}
+          <div className="mb-2 flex justify-center">
+            <div className="relative w-80 h-24 md:w-96 md:h-16 lg:w-[28rem] lg:h-20">
+              <Image
+                src="/images/sections/clock2.png"
+                alt="a Clock, a Secret, and"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Replace main title text with PNG */}
+          <div className="mb-2 flex justify-center">
+            <div className="relative w-full max-w-4xl h-20 md:h-32 lg:h-40">
+              <Image
+                src="/images/sections/invisible.png"
+                alt="an Invisible War in the Sky"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Replace main title text with PNG */}
+          <div className="mb-8 flex justify-center">
+            <div className="relative w-full max-w-xl h-12 md:h-20 lg:h-24">
+              <Image
+                src="/images/sections/luna.png"
+                alt="Luna's world"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
             Step into Luna's world. With the power of AI, IoT, and magical data, kids become heroes in a story where
             science meets adventure.
-          </p>
+          </p> */}
         </div>
 
         {/* Character silhouette */}

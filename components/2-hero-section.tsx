@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { StarField } from "./backgrounds/star-field"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -54,22 +55,16 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden transition-opacity duration-150"
       style={{ opacity }}
     >
-      {/* Animated stars background */}
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-foreground/50 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-            }}
-          />
-        ))}
-      </div>
-
+      {/* Dense starfield with connections */}
+      <StarField 
+        opacity={opacity} 
+        numParticles={300}
+        particleSize={3}
+        speed={0.5}
+        enableConnections={true}
+        connectionDistance={150}
+        className="z-2"
+      />
 
       <div className="relative z-10 text-center px-6">
         <h1 className="text-6xl md:text-8xl font-bold text-primary animate-pulse-glow">Earth needs you.</h1>
