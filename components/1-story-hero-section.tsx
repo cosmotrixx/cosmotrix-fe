@@ -81,17 +81,21 @@ export function StoryHeroSection() {
       {/* Background with fade effect */}
       <div 
         className="absolute inset-0 transition-opacity duration-300"
-        style={{
-          backgroundImage: "url('/images/bg-1.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: backgroundOpacity
-        }}
-      />
+        style={{ opacity: backgroundOpacity }}
+      >
+        <Image
+          src="/images/bg-1.png"
+          alt="Background"
+          fill
+          priority
+          quality={90}
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
       
       {/* Interactive constellation */}
-      <StarField 
+      {/* <StarField 
         opacity={backgroundOpacity * 0.8}
         numParticles={100}
         enableHover={true}
@@ -102,7 +106,7 @@ export function StoryHeroSection() {
         connectionOpacity={0.2}
         colors={["#ffffff", "#ffd700", "#87ceeb"]}
         className="z-2"
-      />
+      /> */}
       
       {/* Optional overlay that also fades */}
       <div 
