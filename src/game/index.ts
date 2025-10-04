@@ -1,20 +1,28 @@
 import { Phaser } from './phaser';
-import { MainScene } from './scenes/MainScene';
+import Bootloader from '../starshake/src/scenes/bootloader';
+import Outro from '../starshake/src/scenes/outro';
+import Splash from '../starshake/src/scenes/splash';
+import Transition from '../starshake/src/scenes/transition';
+import GameScene from '../starshake/src/scenes/game';
 
 export const gameConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1000,
+  height: 800,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
+  autoRound: false,
   parent: 'phaser-game',
-  backgroundColor: '#2c3e50',
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { x: 0, y: 300 },
+      gravity: { x: 0, y: 0 },
       debug: false
     }
   },
-  scene: [MainScene]
+  scene: [Bootloader, Splash, Transition, GameScene, Outro]
 };
 
 export class Game extends Phaser.Game {

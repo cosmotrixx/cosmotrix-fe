@@ -30,6 +30,7 @@ export default function Home() {
           <li className="tracking-[-.01em] mt-2">
             <Link href="/game" className="text-blue-600 hover:text-blue-800 underline">
               🎮 Play the Cosmotrix Game
+              <script type="module" src="@/starshake/src/main.js"></script>
             </Link>
           </li>
         </ol>
