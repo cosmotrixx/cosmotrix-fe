@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { StarField } from '@/components/backgrounds/star-field';
+import { LockIcon } from '@/components/ui/lock-icon';
+import { getChapterProgress } from '@/lib/chapter-progress';
 
 // Dynamically import the Game component to avoid SSR issues
 const GameComponent = dynamic(() => Promise.resolve(GameComponentInner), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-screen flex items-center justify-center bg-black relative overflow-hidden">
+    <div className="w-full h-screen flex items-center justify-center relative overflow-hidden" style={{ background: '#150737' }}>
       <StarField 
         opacity={0.6}
         numParticles={150}
@@ -35,10 +38,27 @@ function GameComponentInner() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [gameLoaded, setGameLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isChecking, setIsChecking] = useState(true);
+
+  // Check if game is unlocked (all chapters completed)
+  useEffect(() => {
+    const checkProgress = () => {
+      const progress = getChapterProgress();
+      const allChapters = ['prologue', 'kingdom-sun', 'hidden-war', 'flare-breaks-free'];
+      const allCompleted = allChapters.every(chapter => 
+        progress.completedChapters.includes(chapter)
+      );
+      setIsUnlocked(allCompleted);
+      setIsChecking(false);
+    };
+
+    checkProgress();
+  }, []);
 
   useEffect(() => {
-    // Only run on client side
-    if (typeof window === 'undefined') return;
+    // Only run on client side and if unlocked
+    if (typeof window === 'undefined' || !isUnlocked) return;
 
     // Dynamic import to avoid SSR issues
     const loadGame = async () => {
@@ -90,11 +110,38 @@ function GameComponentInner() {
         }
       }
     };
-  }, []);
+  }, [isUnlocked]);
+
+  // Show checking state
+  if (isChecking) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center relative overflow-hidden" style={{ background: '#150737' }}>
+        <StarField 
+          opacity={0.6}
+          numParticles={150}
+          colors={["#ffffff", "#ffd700", "#87ceeb", "#ff69b4"]}
+          particleSize={1.5}
+          speed={0.3}
+          enableConnections={true}
+          connectionDistance={100}
+          connectionOpacity={0.1}
+          enableHover={false}
+          enableClick={false}
+          className="z-0"
+        />
+        <div className="text-center relative z-10">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <p className="text-white text-lg">Checking progress...</p>
+        </div>
+      </div>
+    );
+  }
+
+
 
   if (error) {
     return (
-      <div className="w-full h-screen flex items-center justify-center bg-black relative overflow-hidden">
+      <div className="w-full h-screen flex items-center justify-center relative overflow-hidden" style={{ background: '#150737' }}>
         <StarField 
           opacity={0.4}
           numParticles={100}
@@ -109,9 +156,9 @@ function GameComponentInner() {
           className="z-0"
         />
         <div className="text-center max-w-md p-6 relative z-10">
-          <div className="text-6xl mb-4">🎮</div>
-          <h2 className="text-red-400 text-xl font-bold mb-2">Game Error</h2>
-          <p className="text-gray-300 mb-4">{error}</p>
+          <div className="text-6xl mb-6">🎮</div>
+          <h2 className="text-red-400 text-xl font-bold mb-4">Game Error</h2>
+          <p className="text-gray-300 mb-6">{error}</p>
           <button 
             onClick={() => window.location.reload()} 
             className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
@@ -124,7 +171,7 @@ function GameComponentInner() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black relative overflow-hidden p-4">
+    <div className="h-screen flex flex-col items-center justify-center relative overflow-hidden" style={{ background: '#150737' }}>
       {/* Animated starfield background */}
       <StarField 
         opacity={0.8}
@@ -150,14 +197,13 @@ function GameComponentInner() {
       />
 
       {/* Game Title */}
-      <div className="text-center mb-8 relative z-10">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-            Cosmotrix
-          </span>{' '}
-          <span className="text-cyan-400">Game</span>
+      <div className="text-center mb-6 relative z-10">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">
+          <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 100%)' }}>
+            Cosmotrix Game
+          </span>
         </h1>
-        <p className="text-gray-300 text-lg">Space Weather Adventure</p>
+        <p className="text-gray-300 text-base">Space Weather Adventure</p>
       </div>
 
       {/* Game Container */}
@@ -211,7 +257,7 @@ function GameComponentInner() {
           />
 
           {/* Loading overlay */}
-          {!gameLoaded && (
+          {!gameLoaded && isUnlocked && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-20 rounded-lg">
               <div className="text-center">
                 <div className="animate-pulse text-4xl mb-4">🚀</div>
@@ -219,15 +265,61 @@ function GameComponentInner() {
               </div>
             </div>
           )}
+
+          {/* Lock overlay when game is locked */}
+          {!isUnlocked && (
+            <div className="absolute inset-0 flex items-center justify-center z-30 rounded-lg" style={{ background: 'rgba(21, 7, 55, 0.95)' }}>
+              <div className="text-center max-w-md px-6 py-8">
+                {/* Lock Icon */}
+                <div className="mb-8">
+                  <LockIcon 
+                    className="mx-auto drop-shadow-[0_0_15px_rgba(227,62,7,0.5)]" 
+                    style={{ color: '#E33E07' }}
+                    size={80} 
+                  />
+                </div>
+
+                {/* Title */}
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                  <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 100%)' }}>
+                    Complete the Story First
+                  </span>
+                </h2>
+
+                {/* Message */}
+                <p className="text-gray-300 text-sm md:text-base mb-8 leading-relaxed">
+                  Unlock the game by completing all story chapters. Experience the Cosmotrix universe before your space adventure begins!
+                </p>
+
+                {/* Call to action button */}
+                <Link 
+                  href="/story" 
+                  className="inline-flex items-center justify-center px-6 py-3 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  style={{ 
+                    background: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 100%)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(90deg, #C93506 0%, #E6BA00 100%)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(90deg, #E33E07 0%, #FFCF00 100%)';
+                  }}
+                >
+                  <span className="mr-2">📖</span>
+                  Go to Story
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Game controls hint */}
         {gameLoaded && (
-          <div className="mt-6 text-center">
-            <div className="inline-flex items-center space-x-4 text-sm text-gray-400 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full">
-              <span>🎮 Use arrow keys or WASD to move</span>
+          <div className="mt-4 text-center">
+            <div className="inline-flex items-center space-x-4 text-xs text-gray-300 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
+              <span>🎮 Arrow keys/WASD</span>
               <span>•</span>
-              <span>🚀 Spacebar to shoot</span>
+              <span>🚀 Spacebar</span>
               <span>•</span>
               <span>⏸️ P to pause</span>
             </div>
@@ -236,14 +328,23 @@ function GameComponentInner() {
       </div>
 
       {/* Back to home button */}
-      <div className="mt-8 relative z-10">
-        <a 
+      <div className="mt-6 relative z-10">
+        <Link 
           href="/" 
-          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+          className="inline-flex items-center px-5 py-2 text-white text-sm font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+          style={{ 
+            background: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 100%)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(90deg, #C93506 0%, #E6BA00 100%)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(90deg, #E33E07 0%, #FFCF00 100%)';
+          }}
         >
           <span className="mr-2">←</span>
           Back to Home
-        </a>
+        </Link>
       </div>
     </div>
   );
