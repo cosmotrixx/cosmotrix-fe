@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 
@@ -53,6 +53,18 @@ export function TeachingAssistantSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [fullscreenCard, setFullscreenCard] = useState<CardData | null>(null);
 
+  // Disable body scroll when fullscreen is open
+  useEffect(() => {
+    if (fullscreenCard) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [fullscreenCard]);
+
   return (
     <>
       <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-[#1a0b2e] py-20 px-6">
@@ -60,9 +72,6 @@ export function TeachingAssistantSection() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <p className="text-white/80 text-lg font-light tracking-wide">
-                get documents
-              </p>
               <h2 className="text-5xl lg:text-6xl font-bold">
                 <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-yellow-500 bg-clip-text text-transparent">
                   teaching assistant
@@ -75,7 +84,7 @@ export function TeachingAssistantSection() {
 
             {/* Right Content - Interactive Stacked Cards */}
             <div className="relative flex items-center justify-center lg:justify-end">
-              <div className="relative w-full max-w-md aspect-[3/4]">
+              <div className="relative w-full max-w-sm aspect-[9/14.5]">
                 {CARDS.map((card, index) => {
                   const isHovered = hoveredCard === card.id;
                   const rotation = (CARDS.length - 1 - index) * 4;
@@ -104,7 +113,7 @@ export function TeachingAssistantSection() {
                           src={card.image}
                           alt={`${card.title}: ${card.subtitle}`}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                           sizes="(max-width: 768px) 100vw, 400px"
                         />
                         
@@ -127,7 +136,7 @@ export function TeachingAssistantSection() {
       {/* Fullscreen Modal */}
       {fullscreenCard && (
         <div 
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300"
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 overflow-hidden animate-in fade-in duration-300"
           onClick={() => setFullscreenCard(null)}
         >
           {/* Close Button */}
@@ -141,26 +150,16 @@ export function TeachingAssistantSection() {
 
           {/* Fullscreen Card */}
           <div 
-            className="relative w-full max-w-4xl aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl"
+            className="relative h-[95vh] w-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={`relative w-full h-full bg-gradient-to-br ${fullscreenCard.gradientFrom} ${fullscreenCard.gradientTo}`}>
-              <Image
-                src={fullscreenCard.image}
-                alt={`${fullscreenCard.title}: ${fullscreenCard.subtitle}`}
-                fill
-                className="object-cover"
-                priority
-              />
-              
-              {/* Title Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <p className="text-lg font-light text-yellow-300 mb-2">{fullscreenCard.title}</p>
-                <h3 className="text-4xl md:text-5xl font-bold mb-4">{fullscreenCard.subtitle}</h3>
-                <p className="text-white/80 text-lg">Click outside to close</p>
-              </div>
-            </div>
+            <Image
+              src={fullscreenCard.image}
+              alt={`${fullscreenCard.title}: ${fullscreenCard.subtitle}`}
+              fill
+              className="object-cover rounded-2xl"
+              priority
+            />
           </div>
         </div>
       )}
