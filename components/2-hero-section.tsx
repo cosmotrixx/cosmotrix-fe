@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { StarField } from "./backgrounds/star-field"
 
 export function HeroSection() {
@@ -92,6 +93,18 @@ export function HeroSection() {
         colors={["#ffffff", "#ffd700", "#87ceeb"]}
         className="z-2"
       />
+
+      {/* Cosmotrix Logo */}
+      <div className="relative z-10 flex items-center justify-center">
+        <Image
+          src="/logo.svg"
+          alt="Cosmotrix Logo"
+          width={800}
+          height={170}
+          className="max-w-2xl w-full h-auto"
+          priority
+        />
+      </div>
 
     </section>
   )
