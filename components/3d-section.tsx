@@ -414,10 +414,10 @@ export default function ThreeDSection() {
             {/* Title and description */}
             <div className="text-center lg:text-left mb-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                <span className="text-blue-500">IoT Projector Watch</span>
+                <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent">IoT Projector Watch</span>
               </h2>
               <p className="text-lg text-zinc-400 leading-relaxed mb-6">
-                Experience our innovative <span className="text-cyan-400 font-medium">ESP32-powered wearable device</span> designed to make learning more accessible through immersive projection technology.
+                Experience our innovative <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent text-medium">ESP32-powered wearable device</span> designed to make learning more accessible through immersive projection technology.
               </p>
 
               {/* User Experience Image */}
@@ -445,7 +445,7 @@ export default function ThreeDSection() {
         <div className="flex justify-center mt-16">
           <a 
             href="/story"
-            className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 hover:scale-105 transform"
+            className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 hover:scale-105 transform"
           >
             <span className="relative z-10 flex items-center">
               <span className="mr-4 text-2xl">📖</span>
