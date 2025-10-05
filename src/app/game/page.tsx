@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import * as Phaser from 'phaser';
 import { StarField } from '@/components/backgrounds/star-field';
 
 // Dynamically import the Game component to avoid SSR issues
@@ -10,7 +9,6 @@ const GameComponent = dynamic(() => Promise.resolve(GameComponentInner), {
   ssr: false,
   loading: () => (
     <div className="w-full h-screen flex items-center justify-center bg-black relative overflow-hidden">
-      {/* Starfield background for loading */}
       <StarField 
         opacity={0.6}
         numParticles={150}
@@ -33,46 +31,63 @@ const GameComponent = dynamic(() => Promise.resolve(GameComponentInner), {
 });
 
 function GameComponentInner() {
-  const gameRef = useRef<Phaser.Game | null>(null);
+  const gameRef = useRef<any>(null); // Changed from Phaser.Game to any
   const containerRef = useRef<HTMLDivElement>(null);
   const [gameLoaded, setGameLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     // Dynamic import to avoid SSR issues
-    import('@/game').then(({ Game, gameConfig }) => {
-      if (containerRef.current && !gameRef.current) {
-        try {
-          // Create the Phaser game instance with updated config
-          gameRef.current = new Game({
-            ...gameConfig,
-            width: 800,
-            height: 600,
-            parent: containerRef.current,
-            // Add responsive scaling
-            scale: {
-              mode: Phaser.Scale.FIT,
-              autoCenter: Phaser.Scale.CENTER_BOTH,
+    const loadGame = async () => {
+      try {
+        // Import Phaser and game modules dynamically
+        const [Phaser, { Game, gameConfig }] = await Promise.all([
+          import('phaser'),
+          import('@/game')
+        ]);
+
+        if (containerRef.current && !gameRef.current) {
+          try {
+            // Create the Phaser game instance with updated config
+            gameRef.current = new Game({
+              ...gameConfig,
               width: 800,
-              height: 600
-            }
-          });
-          setGameLoaded(true);
-        } catch (err) {
-          console.error('Failed to initialize game:', err);
-          setError('Failed to load game. Please refresh the page.');
+              height: 600,
+              parent: containerRef.current,
+              // Add responsive scaling
+              scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+                width: 800,
+                height: 600
+              }
+            });
+            setGameLoaded(true);
+          } catch (err) {
+            console.error('Failed to initialize game:', err);
+            setError('Failed to load game. Please refresh the page.');
+          }
         }
+      } catch (err) {
+        console.error('Failed to load game modules:', err);
+        setError('Failed to load game modules. Please check your connection.');
       }
-    }).catch((err) => {
-      console.error('Failed to load game module:', err);
-      setError('Failed to load game module. Please check your connection.');
-    });
+    };
+
+    loadGame();
 
     // Cleanup function
     return () => {
       if (gameRef.current) {
-        gameRef.current.destroy(true);
-        gameRef.current = null;
+        try {
+          gameRef.current.destroy(true);
+          gameRef.current = null;
+        } catch (err) {
+          console.error('Error destroying game:', err);
+        }
       }
     };
   }, []);
@@ -80,7 +95,6 @@ function GameComponentInner() {
   if (error) {
     return (
       <div className="w-full h-screen flex items-center justify-center bg-black relative overflow-hidden">
-        {/* Starfield background for error */}
         <StarField 
           opacity={0.4}
           numParticles={100}
@@ -127,7 +141,7 @@ function GameComponentInner() {
         connectionWidth={0.8}
         enableHover={true}
         enableClick={true}
-        hoverMode="grab"
+        hoverMode="bubble"
         clickMode="repulse"
         enableSizeAnimation={true}
         enableOpacityAnimation={true}
@@ -136,7 +150,7 @@ function GameComponentInner() {
       />
 
       {/* Game Title */}
-      {/* <div className="text-center mb-8 relative z-10">
+      <div className="text-center mb-8 relative z-10">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
             Cosmotrix
@@ -144,7 +158,7 @@ function GameComponentInner() {
           <span className="text-cyan-400">Game</span>
         </h1>
         <p className="text-gray-300 text-lg">Space Weather Adventure</p>
-      </div> */}
+      </div>
 
       {/* Game Container */}
       <div className="relative shadow-2xl z-10">
