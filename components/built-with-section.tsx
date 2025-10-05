@@ -52,30 +52,70 @@ export function BuiltWithSection() {
         </h2>
 
         <div 
-          className="w-full flex flex-wrap items-center justify-center gap-10 md:gap-16 py-8 md:py-10"
+          className="w-full relative py-8 md:py-10 overflow-hidden"
           style={{ background: 'linear-gradient(90deg, #150737 0%, #2883A6 100%)' }}
         >
-          {[
-            { name: "Next.js", delay: 0, Comp: NextJSLogo },
-            { name: "Blender", delay: 100, Comp: BlenderLogo },
-            { name: "three.js", delay: 200, Comp: ThreeJSLogo },
-            { name: "Phaser", delay: 300, Comp: PhaserLogo },
-            { name: "Figma", delay: 400, Comp: FigmaLogo },
-            { name: "Gemini", delay: 500, Comp: GeminiLogo },
-            { name: "LangChain", delay: 600, Comp: LangChainLogo },
-            { name: "Procreate", delay: 700, Comp: ProcreateLogo },
-          ].map(({ delay, Comp }, index) => (
-            <div
-              key={index}
-              className={cn(
-                "transition-all duration-1000 text-muted-foreground",
-                isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-              )}
-              style={{ transitionDelay: `${delay}ms` }}
-            >
-              <Comp className="h-8 md:h-10 w-auto" />
-            </div>
-          ))}
+          <style jsx>{`
+            @keyframes scroll {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+            .animate-scroll {
+              animation: scroll 30s linear infinite;
+            }
+            .animate-scroll:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
+          
+          <div className="flex animate-scroll">
+            {/* First set of logos */}
+            {[
+              { name: "Next.js", Comp: NextJSLogo },
+              { name: "Blender", Comp: BlenderLogo },
+              { name: "three.js", Comp: ThreeJSLogo },
+              { name: "Phaser", Comp: PhaserLogo },
+              { name: "Figma", Comp: FigmaLogo },
+              { name: "Gemini", Comp: GeminiLogo },
+              { name: "LangChain", Comp: LangChainLogo },
+              { name: "Procreate", Comp: ProcreateLogo },
+            ].map(({ name, Comp }, index) => (
+              <div
+                key={`first-${index}`}
+                className={cn(
+                  "flex-shrink-0 px-8 md:px-12 flex items-center justify-center text-muted-foreground transition-opacity duration-1000",
+                  isVisible ? "opacity-100" : "opacity-0"
+                )}
+              >
+                <Comp className="h-8 md:h-10 w-auto" />
+              </div>
+            ))}
+            
+            {[
+              { name: "Next.js", Comp: NextJSLogo },
+              { name: "Blender", Comp: BlenderLogo },
+              { name: "three.js", Comp: ThreeJSLogo },
+              { name: "Phaser", Comp: PhaserLogo },
+              { name: "Figma", Comp: FigmaLogo },
+              { name: "Gemini", Comp: GeminiLogo },
+              { name: "LangChain", Comp: LangChainLogo },
+              { name: "Procreate", Comp: ProcreateLogo },
+            ].map(({ name, Comp }, index) => (
+              <div
+                key={`second-${index}`}
+                className={cn(
+                  "flex-shrink-0 px-8 md:px-12 flex items-center justify-center text-muted-foreground transition-opacity duration-1000",
+                  isVisible ? "opacity-100" : "opacity-0"
+                )}
+              >
+                <Comp className="h-8 md:h-10 w-auto" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
