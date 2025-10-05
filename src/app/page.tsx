@@ -15,6 +15,7 @@ const LivingStoriesSection = lazy(() => import("@/components/living-stories-sect
 const ChatSection = lazy(() => import("../../components/chat-section").then(mod => ({ default: mod.ChatSection })))
 const ThreeDSection = lazy(() => import("../../components/3d-section"))
 const TeachingAssistantSection = lazy(() => import("../../components/teaching-assistant-section").then(mod => ({ default: mod.TeachingAssistantSection })))
+const ScalabilitySection = lazy(() => import("../../components/scalability-section").then(mod => ({ default: mod.ScalabilitySection })))
 const DocumentationSection = lazy(() => import("../../components/documentation-section").then(mod => ({ default: mod.DocumentationSection })))
 const Footer = lazy(() => import("../../components/footer").then(mod => ({ default: mod.Footer })))
 
@@ -88,6 +89,10 @@ export default function Home() {
       
       <Suspense fallback={<SectionSkeleton />}>
         <TeachingAssistantSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <ScalabilitySection />
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
