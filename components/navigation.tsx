@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { cn } from "../lib/utils"
+import Link from "next/link"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -15,31 +15,16 @@ export function Navigation() {
   }, [])
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent",
-      )}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-center gap-8">
-          <a href="#home" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Home
-          </a>
-          <a href="#story" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Story
-          </a>
-          <a href="#characters" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Characters
-          </a>
-          <a href="#ai" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Our AI
-          </a>
-          <a href="#game" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Game
-          </a>
+    <nav className="fixed left-1/2 transform -translate-x-1/2 top-4 z-50 w-[92%] max-w-[1100px] flex justify-center pointer-events-auto">
+        <div className="w-full bg-white/6 backdrop-blur-md rounded-[26px] py-2 px-4 shadow-lg">
+          <ul className="flex gap-7 justify-center items-center text-white font-medium">
+            <li><Link href="#" className="text-white/90 px-2 py-1 rounded-md hover:bg-white/6 transition-transform transform hover:-translate-y-0.5 text-sm">Home</Link></li>
+            <li><Link href="#" className="text-white/90 px-2 py-1 rounded-md hover:bg-white/6 transition-transform transform hover:-translate-y-0.5 text-sm">Story</Link></li>
+            <li><Link href="#" className="text-white/90 px-2 py-1 rounded-md hover:bg-white/6 transition-transform transform hover:-translate-y-0.5 text-sm">Characters</Link></li>
+            <li><Link href="#" className="text-white/90 px-2 py-1 rounded-md hover:bg-white/6 transition-transform transform hover:-translate-y-0.5 text-sm">Our AI</Link></li>
+            <li><Link href="#" className="text-white/90 px-2 py-1 rounded-md hover:bg-white/6 transition-transform transform hover:-translate-y-0.5 text-sm">Game</Link></li>
+          </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
   )
 }
