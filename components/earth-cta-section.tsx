@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { cn } from "../lib/utils"
 import { OrbitLine } from "./orbit-line"
-import { getChapterProgress, isChapterUnlocked, completeChapter } from "../lib/chapter-progress"
+import { getStoredProgress, isChapterUnlocked, markChapterCompleted } from "../src/lib/story-progress"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -60,7 +61,16 @@ const chapters: Chapter[] = [
   }
 ]
 
+// Map chapter IDs to numbers for progress system
+const chapterIdToNumber: { [key: string]: number } = {
+  'prologue': 0,
+  'kingdom-sun': 1,
+  'hidden-war': 2,
+  'flare-breaks-free': 3
+}
+
 export function EarthCallToActionSection() {
+  const router = useRouter()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [unlockedChapters, setUnlockedChapters] = useState<Set<string>>(new Set())
@@ -91,24 +101,28 @@ export function EarthCallToActionSection() {
   useEffect(() => {
     // Check which chapters are unlocked and get current chapter
     const unlocked = new Set<string>()
+    const progress = getStoredProgress()
+    
     chapters.forEach(chapter => {
-      if (isChapterUnlocked(chapter.id)) {
+      const chapterNumber = chapterIdToNumber[chapter.id]
+      if (isChapterUnlocked(chapterNumber)) {
         unlocked.add(chapter.id)
       }
     })
     setUnlockedChapters(unlocked)
     
-    // Get current chapter from progress
-    const progress = getChapterProgress()
-    setCurrentChapter(progress.currentChapter)
+    // Get current chapter ID from progress
+    const currentChapterNumber = progress.currentChapter
+    const currentChapterId = Object.keys(chapterIdToNumber).find(
+      id => chapterIdToNumber[id] === currentChapterNumber
+    ) || 'prologue'
+    setCurrentChapter(currentChapterId)
   }, [])
 
   const handleChapterClick = (chapterId: string, chapterTitle: string, chapterIndex: number) => {
     if (unlockedChapters.has(chapterId)) {
-      // Navigate to chapter or handle click
-      console.log(`Navigating to chapter: ${chapterId}`)
-      // You can add navigation logic here
-      // Example: router.push(`/chapter/${chapterId}`)
+      // Navigate to story page
+      router.push('/story')
     } else {
       // Show popup for locked chapter
       const previousChapter = chapterIndex > 0 ? chapters[chapterIndex - 1].title : ''
