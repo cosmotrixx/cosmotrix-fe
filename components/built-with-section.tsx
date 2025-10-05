@@ -2,6 +2,13 @@
 
 import { useEffect, useRef, useState } from "react"
 import { cn } from "../lib/utils"
+import NextJSLogo from "./logos/nextjs"
+import BlenderLogo from "./logos/blender"
+import ThreeJSLogo from "./logos/threejs"
+import PhaserLogo from "./logos/phaser"
+import FigmaLogo from "./logos/figma"
+import GeminiLogo from "./logos/gemini"
+import LangChainLogo from "./logos/langchain"
 
 export function BuiltWithSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -29,7 +36,9 @@ export function BuiltWithSection() {
       ref={sectionRef}
       className="relative py-24 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background -z-10" />
+      <div
+        className="absolute inset-0 -z-10"
+      />
       <div className="text-center">
         <h2
           className={cn(
@@ -42,24 +51,27 @@ export function BuiltWithSection() {
         </h2>
 
         <div 
-          className="w-full flex items-center justify-center gap-12 md:gap-16 py-8 md:py-10 backdrop-blur-sm" 
-          style={{ 
-            background: 'radial-gradient(ellipse 100% 300% at 50% 50%, #21001D 0%, rgba(67, 224, 247, 1) 100%)'
-          }}
+          className="w-full flex flex-wrap items-center justify-center gap-10 md:gap-16 py-8 md:py-10"
+          style={{ background: 'linear-gradient(90deg, #150737 0%, #2883A6 100%)' }}
         >
           {[
-            { name: "Technology 1", delay: 0, icon: "🚀" },
-            { name: "Technology 2", delay: 200, icon: "⚡" },
-            { name: "Technology 3", delay: 400, icon: "🎯" },
-          ].map((tech, index) => (
+            { name: "Next.js", delay: 0, Comp: NextJSLogo },
+            { name: "Blender", delay: 100, Comp: BlenderLogo },
+            { name: "three.js", delay: 200, Comp: ThreeJSLogo },
+            { name: "Phaser", delay: 300, Comp: PhaserLogo },
+            { name: "Figma", delay: 400, Comp: FigmaLogo },
+            { name: "Gemini", delay: 500, Comp: GeminiLogo },
+            { name: "LangChain", delay: 600, Comp: LangChainLogo },
+          ].map(({ delay, Comp }, index) => (
             <div
               key={index}
-              className={cn("transition-all duration-1000", isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75")}
-              style={{ transitionDelay: `${tech.delay}ms` }}
+              className={cn(
+                "transition-all duration-1000 text-muted-foreground",
+                isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              )}
+              style={{ transitionDelay: `${delay}ms` }}
             >
-              <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center text-6xl">
-                {tech.icon}
-              </div>
+              <Comp className="h-8 md:h-10 w-auto" />
             </div>
           ))}
         </div>

@@ -33,12 +33,12 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <PartnershipSection />
+      <BuiltWithSection />
       <VoidlingsSection />
       <EarthNeedsYouSection />
       <EarthCallToActionSection />
       <LivingStoriesSection />
       <ChatSection />
-      <BuiltWithSection />
       <ChaptersSection />
     </main>
   )
