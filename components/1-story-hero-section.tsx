@@ -95,7 +95,7 @@ export function StoryHeroSection() {
       </div>
       
       {/* Interactive constellation */}
-      {/* <StarField 
+      <StarField 
         opacity={backgroundOpacity * 0.8}
         numParticles={100}
         enableHover={true}
@@ -106,7 +106,7 @@ export function StoryHeroSection() {
         connectionOpacity={0.2}
         colors={["#ffffff", "#ffd700", "#87ceeb"]}
         className="z-2"
-      /> */}
+      />
       
       {/* Optional overlay that also fades */}
       <div 

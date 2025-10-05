@@ -38,11 +38,11 @@ export default function Home() {
       <VoidlingsSection />
       <EarthNeedsYouSection />
       <EarthCallToActionSection />
-      <ThreeDSection />
       <LivingStoriesSection />
       <ChatSection />
       <BuiltWithSection />
       <ChaptersSection />
+      <ThreeDSection />
     </main>
   )
 }
