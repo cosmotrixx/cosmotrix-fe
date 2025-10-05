@@ -12,6 +12,8 @@ import { EarthNeedsYouSection } from "../../components/earth-needs-you-section"
 import { ChaptersSection } from "../../components/chapters-section"
 import { EarthCallToActionSection } from "@/components/earth-cta-section"
 import { LivingStoriesSection } from "@/components/living-stories-section"
+// import { ThreeDSection } from "../../components/3d-section"
+import ThreeDSection  from "../../components/3d-section"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -40,6 +42,7 @@ export default function Home() {
       <ChatSection />
       <BuiltWithSection />
       <ChaptersSection />
+      <ThreeDSection />
     </main>
   )
 }

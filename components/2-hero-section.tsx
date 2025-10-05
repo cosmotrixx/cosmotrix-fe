@@ -62,7 +62,7 @@ export function HeroSection() {
       style={{ opacity }}
     >
       {/* Animated stars background - only render on client to avoid hydration mismatch */}
-      {isMounted && (
+      {/* {isMounted && (
         <div className="absolute inset-0">
           {[...Array(50)].map((_, i) => (
             <div
@@ -77,7 +77,21 @@ export function HeroSection() {
             />
           ))}
         </div>
-      )}
+      )} */}
+
+      {/* Interactive constellation */}
+      <StarField 
+        opacity={opacity * 0.8}
+        numParticles={100}
+        enableHover={true}
+        enableClick={true}
+        hoverMode="grab"
+        clickMode="repulse"
+        connectionDistance={100}
+        connectionOpacity={0.2}
+        colors={["#ffffff", "#ffd700", "#87ceeb"]}
+        className="z-2"
+      />
 
     </section>
   )

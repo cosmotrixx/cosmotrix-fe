@@ -35,7 +35,7 @@ export function Navigation() {
           <a href="#ai" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Our AI
           </a>
-          <a href="#game" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+          <a href="game" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Game
           </a>
         </div>
