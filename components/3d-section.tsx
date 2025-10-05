@@ -423,7 +423,7 @@ export default function ThreeDSection() {
               {/* User Experience Image */}
               <div className="relative mb-8 rounded-xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/sections/user.png"
+                  src="/images/iot_final.png"
                   alt="Students using IoT projector watches for interactive learning"
                   width={600}
                   height={350}

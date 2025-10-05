@@ -10,12 +10,17 @@ import { STORY_CHAPTERS } from '@/data/story-data';
 import { CertificationModal } from './certification-modal';
 import { useAudioController } from '@/hooks/use-audio-controller';
 
-export function StoryCardSystem() {
+interface StoryCardSystemProps {
+  initialChapterId?: string;
+  onBack?: () => void;
+}
+
+export function StoryCardSystem({ initialChapterId, onBack }: StoryCardSystemProps = {}) {
   const [chapters, setChapters] = useState<StoryChapter[]>(STORY_CHAPTERS);
   const [selectedChapter, setSelectedChapter] = useState<StoryChapter | null>(null);
   const [showCertificationModal, setShowCertificationModal] = useState(false);
   const [progress, setProgress] = useState<StoryProgress>({
-    currentChapter: 1,
+    currentChapter: 0,
     completedChapters: [],
     lastSlideViewed: {},
     totalProgress: 0,
@@ -32,6 +37,16 @@ export function StoryCardSystem() {
     setChapters(getChapterProgress(STORY_CHAPTERS));
   }, []);
 
+  // Handle initial chapter selection
+  useEffect(() => {
+    if (initialChapterId) {
+      const chapter = STORY_CHAPTERS.find(ch => ch.id === initialChapterId);
+      if (chapter) {
+        setSelectedChapter(chapter);
+      }
+    }
+  }, [initialChapterId]);
+
   const handleChapterSelect = (chapter: StoryChapter) => {
     if (chapter.unlocked) {
       setSelectedChapter(chapter);
@@ -39,8 +54,7 @@ export function StoryCardSystem() {
   };
 
   const handleChapterComplete = (chapterNumber: number) => {
-    markChapterCompleted(chapterNumber);
-    const updatedProgress = getStoredProgress();
+    const updatedProgress = markChapterCompleted(chapterNumber);
     setProgress(updatedProgress);
     setChapters(getChapterProgress(STORY_CHAPTERS));
     setSelectedChapter(null);
@@ -62,7 +76,10 @@ export function StoryCardSystem() {
       <StoryCardViewer 
         chapter={selectedChapter} 
         onComplete={() => handleChapterComplete(selectedChapter.number)}
-        onBack={() => setSelectedChapter(null)}
+        onBack={() => {
+          setSelectedChapter(null);
+          if (onBack) onBack();
+        }}
       />
     );
   }
