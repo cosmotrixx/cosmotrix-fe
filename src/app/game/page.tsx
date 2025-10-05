@@ -273,8 +273,7 @@ function GameComponentInner() {
                 {/* Lock Icon */}
                 <div className="mb-8">
                   <LockIcon 
-                    className="mx-auto drop-shadow-[0_0_15px_rgba(227,62,7,0.5)]" 
-                    style={{ color: '#E33E07' }}
+                    className="mx-auto drop-shadow-[0_0_15px_rgba(227,62,7,0.5)] text-[#E33E07]" 
                     size={80} 
                   />
                 </div>
