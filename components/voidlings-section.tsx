@@ -52,7 +52,7 @@ export function VoidlingsSection() {
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4",
               )}
             >
-              <Voidling className="w-[600px] h-[600px]" />
+            <Voidling2 className="w-[720px] h-[720px]" />
             </div>
           </div>
 
@@ -64,7 +64,7 @@ export function VoidlingsSection() {
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4",
               )}
             >
-              <Voidling2 flipped className="w-[600px] h-[600px]" />
+              <Voidling className="w-[720px] h-[720px]" />
             </div>
             <p
               className={cn(
