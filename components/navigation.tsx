@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -16,12 +15,8 @@ export function Navigation() {
 
   return (
     <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent",
-      )}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"}`}
     >
-      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-center gap-8">
           <a href="#home" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Home
@@ -41,7 +36,7 @@ export function Navigation() {
           <a href="#team" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             About Us
           </a>
-        </div>
-      </nav>
+      </div>
+    </nav>
   )
 }
