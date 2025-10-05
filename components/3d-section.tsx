@@ -436,34 +436,23 @@ export default function ThreeDSection() {
                   </p>
                 </div>
               </div>
-
-              {/* Feature Grid */}
-              <div className="grid md:grid-cols-3 gap-4 mt-8">
-                <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
-                  <div className="text-2xl mb-2">⌚</div>
-                  <h3 className="text-base font-semibold text-white mb-1">Wearable Design</h3>
-                  <p className="text-xs text-zinc-400">Comfortable smartwatch form factor with integrated projection</p>
-                </div>
-                <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
-                  <div className="text-2xl mb-2">📡</div>
-                  <h3 className="text-base font-semibold text-white mb-1">ESP32 Powered</h3>
-                  <p className="text-xs text-zinc-400">Advanced microcontroller enabling IoT connectivity</p>
-                </div>
-                <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
-                  <div className="text-2xl mb-2">🎓</div>
-                  <h3 className="text-base font-semibold text-white mb-1">Learning Accessibility</h3>
-                  <p className="text-xs text-zinc-400">Making education inclusive through projection technology</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center lg:text-left">
-              <p className="text-sm text-zinc-500">
-                Discover how technology meets accessibility in wearable IoT innovation
-              </p>
             </div>
           </div>
+        </div>
 
+        {/* CTA Section - Fixed placement at bottom */}
+        <div className="flex justify-center mt-16">
+          <a 
+            href="/story"
+            className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 hover:scale-105 transform"
+          >
+            <span className="relative z-10 flex items-center">
+              <span className="mr-4 text-2xl">📖</span>
+              Start Luna's Journey!
+              <span className="ml-4 text-xl group-hover:translate-x-1 transition-transform">→</span>
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+          </a>
         </div>
       </div>
     </section>

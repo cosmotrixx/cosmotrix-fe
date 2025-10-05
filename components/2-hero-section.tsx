@@ -82,7 +82,7 @@ export function HeroSection() {
       {/* Interactive constellation */}
       <StarField 
         opacity={opacity * 0.8}
-        numParticles={100}
+        numParticles={30}
         enableHover={true}
         enableClick={true}
         hoverMode="grab"
