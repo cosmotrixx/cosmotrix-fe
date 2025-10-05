@@ -148,7 +148,7 @@ export function StoryHeroSection() {
         {/* Character silhouette */}
         <div
           className={cn(
-            "mt-8 flex justify-start ml-8 md:ml-16 lg:ml-24 transition-all duration-1000 delay-500",
+            "mt-8 flex justify-center ml-8 md:ml-16 lg:ml-24 transition-all duration-1000 delay-500",
             isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75",
           )}
         >
