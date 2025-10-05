@@ -444,7 +444,7 @@ export default function ThreeDSection() {
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
 
-                  <div className="text-2xl mb-2">⌚</div>
+                  <div className="text-2xl mb-2"></div>
 
                   <h3 className="text-base font-semibold text-white mb-1">Wearable Design</h3>
 
@@ -454,7 +454,7 @@ export default function ThreeDSection() {
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
 
-                  <div className="text-2xl mb-2">📡</div>
+                  <div className="text-2xl mb-2"></div>
 
                   <h3 className="text-base font-semibold text-white mb-1">ESP32 Powered</h3>
 
@@ -464,7 +464,7 @@ export default function ThreeDSection() {
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
 
-                  <div className="text-2xl mb-2">🎓</div>
+                  <div className="text-2xl mb-2"></div>
 
                   <h3 className="text-base font-semibold text-white mb-1">Learning Accessibility</h3>
 

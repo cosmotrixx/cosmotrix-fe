@@ -62,38 +62,62 @@ export function ScalabilitySection() {
         </div>
 
 
-        {/* Photo Gallery */}
+        {/* Photo Gallery with Features */}
         <div className="mb-5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-            {/* Photo 1 */}
-            <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src={map1}
-                alt="Student exploring Cosmotrix on tablet"
-                fill
-                className="object-cover"
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <Card className="overflow-hidden">
+              <div className="relative h-[300px]">
+                <Image
+                  src={map1}
+                  alt="Student exploring Cosmotrix on tablet"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-xl mb-3">Illuminating Curiosity</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Cosmotrix transforms learning space weather into an immersive cosmic adventure. Students don't just read about solar flares. They see, hear, and interact with them. Space weather becomes relatable, and unforgettable.
+                </p>
+              </CardContent>
+            </Card>
 
-            {/* Photo 2 */}
-            <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src={map2}
-                alt="Students watching Cosmotrix presentation"
-                fill
-                className="object-cover"
-              />
-            </div>
+            {/* Card 2 */}
+            <Card className="overflow-hidden">
+              <div className="relative h-[300px]">
+                <Image
+                  src={map2}
+                  alt="Students watching Cosmotrix presentation"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-xl mb-3">Amplifying Cosmic Access</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Cosmotrix is omni-accessible. From rural schools to global exhibitions, anyone can scan, learn, and play about space weather with no barriers.
+                </p>
+              </CardContent>
+            </Card>
 
-            {/* Photo 3 */}
-            <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src={map3}
-                alt="Space weather monitoring satellite network"
-                fill
-                className="object-cover"
-              />
-            </div>
+            {/* Card 3 */}
+            <Card className="overflow-hidden">
+              <div className="relative h-[300px]">
+                <Image
+                  src={map3}
+                  alt="Space weather monitoring satellite network"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-xl mb-3">Revolutionizing How We Learn the Universe</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Cosmotrix Combines Kid's Illustration, AI-driven Interaction and IoT usage to distill complex astrophysics into bite-sized, interactive experiences. Making advanced science as easy to grasp as playing a game.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
 

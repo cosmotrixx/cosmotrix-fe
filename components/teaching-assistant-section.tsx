@@ -78,7 +78,7 @@ export function TeachingAssistantSection() {
                 </span>
               </h2>
               <p className="text-white/70 text-lg leading-relaxed max-w-xl">
-                Follow Luna&apos;s journey through space weather phenomena. Each chapter explores the invisible forces that protect and threaten our planet. Hover to preview.
+                  Class-ready learning module
               </p>
             </div>
 

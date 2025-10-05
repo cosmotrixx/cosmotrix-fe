@@ -185,8 +185,8 @@ export function LivingStoriesSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          <p className="text-xl md:text-2xl text-foreground/80 mb-2">Not numbers. Not static charts.</p>
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground">But living stories of the Sun</h2>
+          <p className="text-xl md:text-2xl text-foreground/80 mb-2"></p>
+          <h2 className="text-4xl md:text-6xl font-bold text-foreground">Real time NOAA's data about CME and solar activity</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">

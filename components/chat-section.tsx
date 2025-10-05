@@ -240,7 +240,7 @@ export function ChatSection() {
       >
         <div className="text-center mb-8">
           <p className="text-xl md:text-2xl text-foreground/80">
-            You can ask anything you&apos;re <span className="font-bold text-foreground">curious</span> about
+            Learn about CME and Solar Flares impact directly from them!
           </p>
         </div>
 
