@@ -244,9 +244,9 @@ export function ChatSection() {
           </p>
         </div>
 
-        <Card className="bg-muted/30 border-border/50 backdrop-blur-sm max-w-6xl mx-auto w-full">
-          <CardContent className="p-6 md:p-8">
-            <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start">
+        <Card className="bg-muted/30 border-border/50 backdrop-blur-sm mx-auto min-w-[800px] max-w-[800px]">
+          <CardContent className="p-6 md:p-8 min-h-[450px] max-h-[450px]">
+            <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start h-full">
               {/* Character Selector */}
               <div className="flex flex-col items-center gap-4">
                 <div className="relative w-full">
@@ -284,7 +284,7 @@ export function ChatSection() {
               </div>
 
               {/* Chat Interface - unchanged */}
-              <div className="flex flex-col gap-4 h-[400px]">
+              <div className="flex flex-col gap-4 h-full">
                 <div
                   ref={scrollRef}
                   className="flex-1 min-h-0 space-y-3 overflow-auto rounded-lg border bg-background/60 backdrop-blur-sm p-4"
