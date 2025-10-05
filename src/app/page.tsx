@@ -14,6 +14,9 @@ const EarthCallToActionSection = lazy(() => import("@/components/earth-cta-secti
 const LivingStoriesSection = lazy(() => import("@/components/living-stories-section").then(mod => ({ default: mod.LivingStoriesSection })))
 const ChatSection = lazy(() => import("../../components/chat-section").then(mod => ({ default: mod.ChatSection })))
 const ThreeDSection = lazy(() => import("../../components/3d-section"))
+const TeachingAssistantSection = lazy(() => import("../../components/teaching-assistant-section").then(mod => ({ default: mod.TeachingAssistantSection })))
+const DocumentationSection = lazy(() => import("../../components/documentation-section").then(mod => ({ default: mod.DocumentationSection })))
+const Footer = lazy(() => import("../../components/footer").then(mod => ({ default: mod.Footer })))
 
 // Loading skeleton component
 const SectionSkeleton = () => (
@@ -81,6 +84,18 @@ export default function Home() {
       
       <Suspense fallback={<SectionSkeleton />}>
         <ThreeDSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <TeachingAssistantSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <DocumentationSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <Footer />
       </Suspense>
     </main>
   )
