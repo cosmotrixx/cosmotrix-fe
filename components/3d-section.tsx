@@ -16,6 +16,7 @@ export default function ThreeDSection() {
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const modelRef = useRef<THREE.Object3D | null>(null)
   const frameRef = useRef<number>()
+  const sectionRef = useRef<HTMLElement>(null);
 
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -340,8 +341,8 @@ export default function ThreeDSection() {
 
   return (
     <section
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center py-24 px-6 bg-gradient-to-b from-zinc-950 to-zinc-900"
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center py-24 px-6 bg-gradient-to-b from-[#1a0b2e] to-black"
     >
       {/* Background grid */}
       <div

@@ -1,8 +1,11 @@
 "use client"
 
+import { useRef } from "react";
+
 export function DocumentationSection() {
+    const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1a0b2e] to-black py-20 px-6">
+    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden py-20 px-6">
       <div className="max-w-7xl w-full mx-auto">
         <div className="space-y-12">
           {/* Section Title */}
@@ -12,9 +15,6 @@ export function DocumentationSection() {
                 Documentation
               </span>
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
-              Learn more about Cosmotrix through our comprehensive video guide
-            </p>
           </div>
 
           {/* Video Placeholder */}

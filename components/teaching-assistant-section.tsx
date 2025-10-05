@@ -1,8 +1,11 @@
 "use client"
 
+import { useRef } from 'react';
+
 export function TeachingAssistantSection() {
+    const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#1a0b2e] py-20 px-6">
+    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-[#1a0b2e] py-20 px-6">
       <div className="max-w-7xl w-full mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
