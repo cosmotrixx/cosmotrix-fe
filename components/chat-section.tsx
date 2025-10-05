@@ -63,7 +63,7 @@ const CHARACTERS: Character[] = [
     greeting: "Clear skies. What would you like to know about flying through space weather?",
     colorClass:
       "from-violet-600/30 to-purple-500/20 dark:from-violet-500/30 dark:to-fuchsia-500/10",
-    image: "/images/professions/1.png",
+    image: "/images/professions/Rina.png",
   },
   {
     key: "powerOperator",
@@ -73,7 +73,7 @@ const CHARACTERS: Character[] = [
     greeting: "Control room online. Ask about grid stability and geomagnetic storms.",
     colorClass:
       "from-fuchsia-600/30 to-purple-500/20 dark:from-fuchsia-500/30 dark:to-violet-500/10",
-    image: "/images/professions/2.png",
+    image: "/images/professions/Ibrahim.png",
   },
   {
     key: "astronaut",
@@ -83,7 +83,7 @@ const CHARACTERS: Character[] = [
     greeting: "Crew nominal. Curious about life and safety in orbit during solar events?",
     colorClass:
       "from-indigo-600/30 to-purple-500/20 dark:from-indigo-500/30 dark:to-purple-500/10",
-    image: "/images/professions/3.png",
+    image: "/images/professions/Elena.png",
   },
   {
     key: "satelliteOperator",
@@ -93,7 +93,7 @@ const CHARACTERS: Character[] = [
     greeting: "Telemetry green (mostly). Ask me about satellite anomalies and recovery.",
     colorClass:
       "from-purple-600/30 to-fuchsia-500/20 dark:from-purple-500/30 dark:to-pink-500/10",
-    image: "/images/professions/4.png",
+    image: "/images/professions/Budi.png",
   },
   {
     key: "emergencyCoordinator",
@@ -103,7 +103,7 @@ const CHARACTERS: Character[] = [
     greeting: "Operations ready. Want to know how we keep people safe when comms wobble?",
     colorClass:
       "from-fuchsia-600/30 to-indigo-500/20 dark:from-fuchsia-500/30 dark:to-indigo-500/10",
-    image: "/images/professions/5.png",
+    image: "/images/professions/Arief.png",
   },
   {
     key: "scientist",
@@ -113,7 +113,7 @@ const CHARACTERS: Character[] = [
     greeting: "Forecast desk here. Ask anything about flares, CMEs, and predictions.",
     colorClass:
       "from-purple-600/30 to-blue-500/20 dark:from-purple-500/30 dark:to-blue-500/10",
-    image: "/images/professions/6.png",
+    image: "/images/professions/Maya.png",
   },
 ]
 
