@@ -61,7 +61,7 @@ export function markChapterCompleted(chapterNumber: number): void {
   if (!progress.completedChapters.includes(chapterNumber)) {
     progress.completedChapters.push(chapterNumber);
     progress.currentChapter = Math.min(chapterNumber + 1, 4); // Assuming max 4 chapters
-    progress.totalProgress = (progress.completedChapters.length / 3) * 100; // 3 total chapters
+    progress.totalProgress = (progress.completedChapters.length / 4) * 100; // 4 total chapters (prologue + 3 chapters)
     
     // Award chapter badge
     const badgeId = `chapter-${chapterNumber}-complete`;
@@ -93,7 +93,7 @@ export function updateLastSlideViewed(chapterId: string, slideId: string): void 
 }
 
 export function isChapterUnlocked(chapterNumber: number): boolean {
-  if (chapterNumber === 1) return true; // First chapter always unlocked
+  if (chapterNumber === 0 || chapterNumber === 1) return true; // Prologue and first chapter always unlocked
   
   const progress = getStoredProgress();
   return progress.completedChapters.includes(chapterNumber - 1);

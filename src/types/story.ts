@@ -1,9 +1,24 @@
+export interface AudioSegment {
+  file: string;
+  startTime?: number;
+  endTime?: number;
+}
+
+export interface StorySubtitle {
+  id: string;
+  text: string;
+  duration?: number; // Duration to display this subtitle in milliseconds
+  speaker?: 'narrator' | 'luna' | 'character'; // Who is speaking
+  audioUrl?: string; // Direct audio URL for this subtitle
+  audioSegment?: AudioSegment; // Audio segment with timing info
+}
+
 export interface StorySlide {
   id: string;
   imageUrl: string;
-  subtitle: string;
+  subtitles: StorySubtitle[];
   audioUrl?: string;
-  duration?: number; // Duration to display this slide in milliseconds
+  duration?: number; // Total duration to display this slide in milliseconds
 }
 
 export interface StoryChapter {
