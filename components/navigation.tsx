@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { cn } from "../lib/utils"
+import Link from "next/link"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -42,7 +42,6 @@ export function Navigation() {
             About Us
           </a>
         </div>
-      </div>
-    </nav>
+      </nav>
   )
 }

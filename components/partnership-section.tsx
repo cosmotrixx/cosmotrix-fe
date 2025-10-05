@@ -40,11 +40,11 @@ export function PartnershipSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          <span className="text-foreground">In Partnership </span>
-          <span className="text-white font-light">with</span>
+          <span style={{ color: '#C49FCC' }}>In Partnership </span>
+          <span className="text-white font-light" style={{ color: '#C49FCC' }}>with</span>
         </h2>
 
-        <div className="w-full flex items-center justify-center gap-12 md:gap-16 py-8 md:py-10 backdrop-blur-sm" style={{ background: 'radial-gradient(circle, #150737 0%, #E174D3 100%)' }}>
+        <div className="w-full flex items-center justify-center gap-12 md:gap-16 py-8 md:py-10" style={{ background: 'linear-gradient(90deg, #150737 0%, #E174D3 100%)' }}>
           {[
             { name: "NOAA", delay: 0, Logo: NoaaLogo },
             { name: "NASA", delay: 200, Logo: NasaLogo },

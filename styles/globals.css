@@ -123,3 +123,44 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animations for chapter progression */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.9;
+    filter: brightness(1.2);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.4);
+  }
+  75% {
+    opacity: 0.95;
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.3),
+                0 0 40px rgba(250, 204, 21, 0.2),
+                0 0 60px rgba(250, 204, 21, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.5),
+                0 0 60px rgba(250, 204, 21, 0.3),
+                0 0 90px rgba(250, 204, 21, 0.2);
+  }
+}
+
+.animate-flicker {
+  animation: flicker 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

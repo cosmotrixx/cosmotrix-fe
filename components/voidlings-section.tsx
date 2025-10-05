@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { cn } from "../lib/utils"
 import { Voidling } from "./voidling"
+import { Voidling2 } from "./voidling2"
 
 export function VoidlingsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -26,18 +27,16 @@ export function VoidlingsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center py-24 px-6">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left side - First sun */}
-          <div
-            className={cn(
-              "text-center transition-all duration-1000",
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10",
-            )}
-          >
-            <p 
-              className="text-lg md:text-xl italic mb"
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center py-16 md:py-24 px-6">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col">
+          {/* Top row: text left, voidling right */}
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <p
+              className={cn(
+                "text-left text-lg md:text-xl italic max-w-md transition-all duration-1000",
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+              )}
               style={{
                 background: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 40%)',
                 WebkitBackgroundClip: 'text',
@@ -47,23 +46,31 @@ export function VoidlingsSection() {
             >
               The Voidlings have stolen the Sun&apos;s storms.
             </p>
-            <div className="relative inline-block">
-              <Voidling className="w-128 h-128 md:w-192 md:h-192" />
+            <div
+              className={cn(
+                "transition-all duration-1000",
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4",
+              )}
+            >
+            <Voidling2 className="w-[720px] h-[720px]" />
             </div>
           </div>
 
-          {/* Right side - Second sun */}
-          <div
-            className={cn(
-              "text-center transition-all duration-1000 delay-300",
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10",
-            )}
-          >
-            <div className="relative inline-block mb-8">
-              <Voidling flipped className="w-128 h-128 md:w-192 md:h-192" />
+          {/* Bottom row: voidling left, text right */}
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div
+              className={cn(
+                "transition-all duration-1000 delay-150 order-2 md:order-1",
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4",
+              )}
+            >
+              <Voidling className="w-[720px] h-[720px]" />
             </div>
-            <p 
-              className="text-lg md:text-xl italic"
+            <p
+              className={cn(
+                "text-right text-lg md:text-xl italic max-w-md transition-all duration-1000 delay-150 order-1 md:order-2",
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+              )}
               style={{
                 background: 'linear-gradient(90deg, #E33E07 0%, #FFCF00 40%)',
                 WebkitBackgroundClip: 'text',
