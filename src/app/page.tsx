@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState, lazy, Suspense } from "react"
-import { Navigation } from "../../components/navigation"
-import { StoryHeroSection } from "../../components/1-story-hero-section"
-import { HeroSection } from "../../components/2-hero-section"
 
-// Lazy load components that are below the fold
+// Lazy load ALL components
+const Navigation = lazy(() => import("../../components/navigation").then(mod => ({ default: mod.Navigation })))
+const StoryHeroSection = lazy(() => import("../../components/1-story-hero-section").then(mod => ({ default: mod.StoryHeroSection })))
+const HeroSection = lazy(() => import("../../components/2-hero-section").then(mod => ({ default: mod.HeroSection })))
 const PartnershipSection = lazy(() => import("../../components/partnership-section").then(mod => ({ default: mod.PartnershipSection })))
 const BuiltWithSection = lazy(() => import("../../components/built-with-section").then(mod => ({ default: mod.BuiltWithSection })))
 const VoidlingsSection = lazy(() => import("../../components/voidlings-section").then(mod => ({ default: mod.VoidlingsSection })))
@@ -38,12 +38,19 @@ export default function Home() {
 
   return (
     <main className="relative overflow-x-hidden">
-      {/* Above the fold - loaded immediately */}
-      <StoryHeroSection />
-      <Navigation />
-      <HeroSection />
+      {/* All sections are now lazy loaded */}
+      <Suspense fallback={<SectionSkeleton />}>
+        <StoryHeroSection />
+      </Suspense>
       
-      {/* Below the fold - lazy loaded */}
+      <Suspense fallback={<SectionSkeleton />}>
+        <Navigation />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <HeroSection />
+      </Suspense>
+      
       <Suspense fallback={<SectionSkeleton />}>
         <PartnershipSection />
       </Suspense>
