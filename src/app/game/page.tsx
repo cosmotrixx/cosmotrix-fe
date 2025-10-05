@@ -5,7 +5,8 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { StarField } from '@/components/backgrounds/star-field';
 import { LockIcon } from '@/components/ui/lock-icon';
-import { getChapterProgress } from '@/lib/chapter-progress';
+import { GameProtection } from '@/components/game/game-protection';
+import { getStoredProgress } from '@/lib/story-progress';
 
 // Dynamically import the Game component to avoid SSR issues
 const GameComponent = dynamic(() => Promise.resolve(GameComponentInner), {
@@ -44,8 +45,8 @@ function GameComponentInner() {
   // Check if game is unlocked (all chapters completed)
   useEffect(() => {
     const checkProgress = () => {
-      const progress = getChapterProgress();
-      const allChapters = ['prologue', 'kingdom-sun', 'hidden-war', 'flare-breaks-free'];
+      const progress = getStoredProgress();
+      const allChapters = [0, 1, 2, 3]; // prologue, kingdom-sun, hidden-war, flare-breaks-free
       const allCompleted = allChapters.every(chapter => 
         progress.completedChapters.includes(chapter)
       );
@@ -350,5 +351,9 @@ function GameComponentInner() {
 }
 
 export default function GamePage() {
-  return <GameComponent />;
+  return (
+    <GameProtection>
+      <GameComponent />
+    </GameProtection>
+  );
 }

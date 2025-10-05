@@ -67,7 +67,7 @@ export function TeachingAssistantSection() {
 
   return (
     <>
-      <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-[#1a0b2e] py-20 px-6">
+      <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden py-20 px-6">
         <div className="max-w-7xl w-full mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -83,7 +83,7 @@ export function TeachingAssistantSection() {
             </div>
 
             {/* Right Content - Interactive Stacked Cards */}
-            <div className="relative flex items-center justify-center lg:justify-end">
+            <div className="relative flex items-center justify-center lg:justify-end pb-36 px-8">
               <div className="relative w-full max-w-sm aspect-[9/14.5]">
                 {CARDS.map((card, index) => {
                   const isHovered = hoveredCard === card.id;
