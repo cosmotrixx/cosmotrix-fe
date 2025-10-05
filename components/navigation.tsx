@@ -40,6 +40,9 @@ export function Navigation() {
         <a href="game" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
           Game
         </a>
+        <a href="about" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
+          About
+        </a>
       </div>
     </nav>
   )
