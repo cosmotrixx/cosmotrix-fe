@@ -9,6 +9,7 @@ import PhaserLogo from "./logos/phaser"
 import FigmaLogo from "./logos/figma"
 import GeminiLogo from "./logos/gemini"
 import LangChainLogo from "./logos/langchain"
+import ProcreateLogo from "./logos/procreate"
 
 export function BuiltWithSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -62,6 +63,7 @@ export function BuiltWithSection() {
             { name: "Figma", delay: 400, Comp: FigmaLogo },
             { name: "Gemini", delay: 500, Comp: GeminiLogo },
             { name: "LangChain", delay: 600, Comp: LangChainLogo },
+            { name: "Procreate", delay: 700, Comp: ProcreateLogo },
           ].map(({ delay, Comp }, index) => (
             <div
               key={index}
