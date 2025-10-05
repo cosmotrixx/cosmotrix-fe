@@ -40,7 +40,6 @@ export default function Home() {
       <EarthCallToActionSection />
       <LivingStoriesSection />
       <ChatSection />
-      <ChaptersSection />
       <ThreeDSection />
     </main>
   )
