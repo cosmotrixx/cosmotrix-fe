@@ -46,18 +46,15 @@ export function Navigation() {
           <a href="/story" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
             Story
           </a>
-          <a href="#characters" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
+          <a href="/characters" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
             Characters
           </a>
-          <a href="#ai" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
-            Our AI
-          </a>
-          <a href="game" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
+          <a href="/game" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
             Game
           </a>
-          <a href="about" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
-            About
-          </a>
+          <a href="/about" className="text-sm font-medium text-white/60 hover:text-white/80 transition-colors whitespace-nowrap">
+          About
+        </a>
         </div>
       </div>
     </nav>
