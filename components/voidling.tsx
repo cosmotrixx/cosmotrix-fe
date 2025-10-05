@@ -6,11 +6,8 @@ interface VoidlingProps extends SVGProps<SVGSVGElement> {
 
 export function Voidling({ flipped = false, className, ...props }: VoidlingProps) {
   return (
-    <svg width="920" height="557" viewBox="-70 0 800 500" fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      style={{ transform: flipped ? 'scaleX(-1)' : undefined }} xmlnsXlink="http://www.w3.org/1999/xlink">
-<rect x="-70" width="800" height="500" fill="url(#pattern0_99_2215)"/>
+ <svg width="920" height="557" viewBox="0 0 920 557" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className={className} style={{ transform: flipped ? 'scaleX(-1)' : undefined }} {...props}>
+<rect x="-70" width="990" height="557" fill="url(#pattern0_99_2215)"/>
 <defs>
 <pattern id="pattern0_99_2215" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlinkHref="#image0_99_2215" transform="scale(0.00052095 0.000925926)"/>
