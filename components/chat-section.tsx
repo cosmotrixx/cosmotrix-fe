@@ -47,12 +47,6 @@ const API_BASE =
     ? "http://localhost:3000"
     : "")
 
-// Debug: Log API_BASE on load
-if (typeof window !== "undefined") {
-  console.log('🌐 API_BASE:', API_BASE)
-  console.log('🌐 NEXT_PUBLIC_BACKEND_URL:', process.env.NEXT_PUBLIC_BACKEND_URL)
-  console.log('🌐 window.location:', window.location.hostname)
-}
 
 const CHARACTERS: Character[] = [
   {

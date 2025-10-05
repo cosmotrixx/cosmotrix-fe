@@ -167,3 +167,13 @@
 .animate-rotate-slow {
   animation: rotate-slow 60s linear infinite;
 }
+
+/* Hide scrollbar utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

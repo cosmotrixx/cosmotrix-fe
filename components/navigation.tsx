@@ -26,17 +26,20 @@ export function Navigation() {
           <a href="#home" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Home
           </a>
-          <a href="#story" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+          {/* <a href="#story" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+            Story
+          </a> */}
+          <a href="/story" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Story
           </a>
           <a href="#characters" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Characters
           </a>
-          <a href="#ai" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Our AI
-          </a>
           <a href="game" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Game
+          </a>
+          <a href="#team" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+            About Us
           </a>
         </div>
       </div>
