@@ -437,6 +437,55 @@ export default function ThreeDSection() {
                   </p>
                 </div>
               </div>
+
+                            {/* Feature Grid */}
+
+              <div className="grid md:grid-cols-3 gap-4 mt-8">
+
+                <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
+
+                  <div className="text-2xl mb-2">⌚</div>
+
+                  <h3 className="text-base font-semibold text-white mb-1">Wearable Design</h3>
+
+                  <p className="text-xs text-zinc-400">Comfortable smartwatch form factor with integrated projection</p>
+
+                </div>
+
+                <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
+
+                  <div className="text-2xl mb-2">📡</div>
+
+                  <h3 className="text-base font-semibold text-white mb-1">ESP32 Powered</h3>
+
+                  <p className="text-xs text-zinc-400">Advanced microcontroller enabling IoT connectivity</p>
+
+                </div>
+
+                <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-4 border border-zinc-700">
+
+                  <div className="text-2xl mb-2">🎓</div>
+
+                  <h3 className="text-base font-semibold text-white mb-1">Learning Accessibility</h3>
+
+                  <p className="text-xs text-zinc-400">Making education inclusive through projection technology</p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <div className="text-center lg:text-left">
+
+              <p className="text-sm text-zinc-500">
+
+                Discover how technology meets accessibility in wearable IoT innovation
+
+              </p>
+              
             </div>
           </div>
         </div>
