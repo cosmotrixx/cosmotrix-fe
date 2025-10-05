@@ -76,6 +76,8 @@ export default function ThreeDSection() {
   useEffect(() => {
     if (!containerRef.current || !isVisible || !webglSupported) return
 
+    let cleanupFunction: (() => void) | null = null
+
     const initScene = async () => {
       try {
         const { OBJLoader } = await import("three/addons/loaders/OBJLoader.js")
@@ -118,8 +120,11 @@ export default function ThreeDSection() {
             mtl.preload()
             for (const material of Object.values(mtl.materials)) {
               material.side = THREE.DoubleSide
-              if (material.color && material.color.r === 0 && material.color.g === 0 && material.color.b === 0) {
-                material.color.setRGB(1, 1, 1)
+              // Type-cast to MeshPhongMaterial to access color property
+              if (material instanceof THREE.MeshPhongMaterial || material instanceof THREE.MeshLambertMaterial || material instanceof THREE.MeshBasicMaterial) {
+                if (material.color && material.color.r === 0 && material.color.g === 0 && material.color.b === 0) {
+                  material.color.setRGB(1, 1, 1)
+                }
               }
             }
 
@@ -307,8 +312,9 @@ export default function ThreeDSection() {
         }
         animate()
 
-        return () => {
-          cancelAnimationFrame(frameRef.current!)
+        // Store cleanup function
+        cleanupFunction = () => {
+          if (frameRef.current) cancelAnimationFrame(frameRef.current)
           window.removeEventListener("resize", handleResize)
           document.removeEventListener("mousemove", handleMouseMove)
           document.removeEventListener("mouseup", handleMouseUp)
@@ -317,6 +323,9 @@ export default function ThreeDSection() {
           canvas.removeEventListener("mouseleave", handleMouseLeave)
           canvas.removeEventListener("dblclick", handleDoubleClick)
           canvas.removeEventListener("wheel", handleWheel)
+          if (containerRef.current && canvas.parentNode === containerRef.current) {
+            containerRef.current.removeChild(canvas)
+          }
           renderer.dispose()
         }
       } catch (err) {
@@ -326,11 +335,12 @@ export default function ThreeDSection() {
       }
     }
 
-    const cleanup = initScene()
+    initScene()
+
     return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current)
-      if (cleanup instanceof Promise) cleanup.then((fn) => typeof fn === "function" && fn())
-      else if (typeof cleanup === "function") cleanup()
+      if (cleanupFunction) {
+        cleanupFunction()
+      }
     }
   }, [isVisible, webglSupported])
 
