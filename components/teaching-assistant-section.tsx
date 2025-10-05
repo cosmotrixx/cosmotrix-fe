@@ -74,11 +74,11 @@ export function TeachingAssistantSection() {
             <div className="space-y-6">
               <h2 className="text-5xl lg:text-6xl font-bold">
                 <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-                  teaching assistant
+                  Story Chapters
                 </span>
               </h2>
               <p className="text-white/70 text-lg leading-relaxed max-w-xl">
-                Explore the chapters of Luna&apos;s journey through space weather. Hover to preview, click to read the full story.
+                Follow Luna&apos;s journey through space weather phenomena. Each chapter explores the invisible forces that protect and threaten our planet. Hover to preview.
               </p>
             </div>
 
