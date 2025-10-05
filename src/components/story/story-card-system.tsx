@@ -67,7 +67,7 @@ export function StoryCardSystem() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#150737]">
       <div className="w-full max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12">
