@@ -46,8 +46,8 @@ export function BuiltWithSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
-          <span className="text-foreground">Built </span>
-          <span className="text-white font-light">with</span>
+          <span style={{ color: '#68A2AA' }}>Built </span>
+          <span className="text-white font-light" style={{ color: '#68A2AA' }}>with</span>
         </h2>
 
         <div 
