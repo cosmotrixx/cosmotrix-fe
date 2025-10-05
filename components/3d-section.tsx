@@ -342,7 +342,7 @@ export default function ThreeDSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center py-24 px-6 bg-gradient-to-b from-[#1a0b2e] to-black"
+      className="relative min-h-screen flex items-center justify-center py-24 px-6"
     >
       {/* Background grid */}
       <div
@@ -485,7 +485,7 @@ export default function ThreeDSection() {
                 Discover how technology meets accessibility in wearable IoT innovation
 
               </p>
-              
+
             </div>
           </div>
         </div>
