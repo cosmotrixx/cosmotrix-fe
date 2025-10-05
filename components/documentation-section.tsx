@@ -11,7 +11,7 @@ export function DocumentationSection() {
           {/* Section Title */}
           <div className="text-center space-y-4">
             <h2 className="text-5xl lg:text-6xl font-bold">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent">
                 Documentation
               </span>
             </h2>
@@ -22,7 +22,7 @@ export function DocumentationSection() {
             <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm border border-purple-500/30 shadow-2xl">
               {/* Placeholder Content */}
               <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-r from-orange-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent flex items-center justify-center shadow-lg">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24" 
