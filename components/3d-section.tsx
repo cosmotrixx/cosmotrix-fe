@@ -341,7 +341,7 @@ export default function ThreeDSection() {
 
   return (
     <section
-      ref={sectionRef}
+      ref={containerRef}
       className="relative min-h-screen flex items-center justify-center py-24 px-6"
     >
       {/* Background grid */}
